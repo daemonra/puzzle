@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Potato Map</title>
+</head>
+<body>
+
+    <div class="container">
+        <div id="left">
+            <h2>Potato Map</h2>
+            <div class="popup">
+                <span class="popuptext" id="myPopup">Can't place item here :(</span>
+              </div>
+            <table id="map">
+      
+            </table>
+        </div>
+
+        <div id="right">
+            <div class="sector">
+                <div class="season" style="background-color: #3ea742">
+                    Spring: <div><span id="spring-points">0</span> Points</div>
+                </div>
+
+                <div class="season" style="background-color: #f3da00">
+                    Summer: <div><span id="summer-points">0</span> Points</div>
+                </div>
+
+                <div class="season" style="background-color: #ad7b4b">
+                    Autumn: <div><span id="autumn-points">0</span> Points</div>
+                </div>
+
+                <div class="season" style="background-color: #339db4">
+                    Winter: <div><span id="winter-points">0</span> Points</div>
+                </div>
+
+                <h3>Total Points: <span id="total-points">0</span> </h3>
+            </div>
+
+            <div class="sector">
+                <h2>Current Season: <span id="current-season">Spring</span> (BC)</h2>
+
+                <div class="mission">
+                    <div style="max-width: 90px;">
+                        <img src="2.PNG" alt="">
+                    </div>
+                    <div style="margin-left: 10px;">
+                        <h3>Borderlands</h3>
+                        <div>For each full row or column, you get six points.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sector">
+                <h2>Elapsed time in current season: <span id="time-elapsed">0</span>/7 </h2>
+
+                <h4>Current Element:</h4>
+
+                <div id="seconds-timer-div">
+                    <span id="seconds-timer"></span> s
+                </div>
+                <table id="elementPre"></table>
+
+                <button id="rotate-btn">Rotate</button>
+                <button id="flip-btn">Flip</button>
+            </div>
+
+        </div>
+    </div> 
+    
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <h3>Game Ended :)</h3>
+            <div>
+                Points Collected for Borderlands Mission: <span id="pointsEnd">10</span>
+            </div>
+            <button id="playAgain" onclick="location.reload()">Play Again!</button>
+        </div>
+      
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html> 
