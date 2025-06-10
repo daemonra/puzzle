@@ -47,7 +47,7 @@ const elements = [
     },
     {
         time: 2,
-        type: 'town',
+        type: 'village',
         shape: [[1,1,1],
                 [0,0,0],
                 [0,0,0]],
@@ -65,7 +65,7 @@ const elements = [
     },
     {
         time: 2,
-        type: 'farm',
+        type: 'plains',
         shape: [[1,1,1],
                 [0,0,1],
                 [0,0,0]],
@@ -83,7 +83,7 @@ const elements = [
     },
     {
         time: 2,
-        type: 'town',
+        type: 'village',
         shape: [[1,1,1],
                 [0,1,0],
                 [0,0,0]],
@@ -92,7 +92,7 @@ const elements = [
     },
     {
         time: 2,
-        type: 'farm',
+        type: 'plains',
         shape: [[1,1,1],
                 [0,1,0],
                 [0,0,0]],
@@ -101,7 +101,7 @@ const elements = [
     },
     {
         time: 1,
-        type: 'town',
+        type: 'village',
         shape: [[1,1,0],
                 [1,0,0],
                 [0,0,0]],
@@ -110,7 +110,7 @@ const elements = [
     },
     {
         time: 1,
-        type: 'town',
+        type: 'village',
         shape: [[1,1,1],
                 [1,1,0],
                 [0,0,0]],
@@ -119,7 +119,7 @@ const elements = [
     },
     {
         time: 1,
-        type: 'farm',
+        type: 'plains',
         shape: [[1,1,0],
                 [0,1,1],
                 [0,0,0]],
@@ -128,7 +128,7 @@ const elements = [
     },
     {
         time: 1,
-        type: 'farm',
+        type: 'plains',
         shape: [[0,1,0],
                 [1,1,1],
                 [0,1,0]],
@@ -259,22 +259,23 @@ function renderMatrix() {
 
         for (let j = 0 ; j < matrix[i].length; j++) {
             
-            let classType = ""
+            let objectType = ""
             if (matrix[i][j] == 'b') {
-                classType = "blank"
+                objectType = "base"
             } else if (matrix[i][j] == 'm') {
-                classType = "mountain"
-            } else if (matrix[i][j] == 'o') {
-                classType = "forest"
+                objectType = "mountain"
+            } else if (matrix[i][j] == 'f') {
+                objectType = "forest"
             } else if (matrix[i][j] == 'w') {
-                classType = "water"
-            } else if (matrix[i][j] == 'a') {
-                classType = "farm"
-            } else if (matrix[i][j] == 't') {
-                classType = "town"
+                objectType = "water"
+            } else if (matrix[i][j] == 'p') {
+                objectType = "plains"
+            } else if (matrix[i][j] == 'v') {
+                objectType = "village"
             }
 
-            str+="<td class='grid "+classType+"' data-i='"+i+"' data-j='"+j+"'></td>"
+    
+            str+="<td class='grid "+objectType+"'><img src='./tiles/"+objectType+"_tile.svg' alt='' data-i='"+i+"' data-j='"+j+"'></td>"
         }
 
         str+="</tr>"
@@ -292,15 +293,15 @@ function renderElement(elementMatrix, shapeType) {
 
         for (let j = 0 ; j < elementMatrix[i].length; j++) {
 
-            let classType = ""
+            let objectType = ""
 
             if (elementMatrix[i][j] == 0) {
-                classType = "white";
+                objectType = "white";
             } else {
-                classType = shapeType;
+                objectType = shapeType;
             }
             
-            str+="<td class='element "+classType+"'  data-i='"+i+"' data-j='"+j+"'></td>"
+            str+="<td class='element'><img src='./tiles/"+objectType+"_tile.svg' alt='' data-i='"+i+"' data-j='"+j+"'></td>"
         }
 
         str+="</tr>"
@@ -318,7 +319,8 @@ function checkBlanks(indexI, indexJ) {
                 if (indexI+i > 10 || indexJ+j > 10) {
                     return false
                 }
-                
+                // console.log(indexI)
+                // console.log(indexJ)
                 if (matrix[indexI+i][indexJ+j] != 'b') {
                     return false
                 }
@@ -376,15 +378,32 @@ function checkCompleteColRows () {
     return completedThisRound
 }
 
+function checkEdgeForest () {
+    let completedThisRound = 0
+    
+    for (let i = 0 ; i < 11; i++) {
+        
+        for (let j = 0 ; j < 11; j++) {
+            
+            if (j == 0 || i == 0 || j == 11 || i == 11) {
+                if (matrix[i][j] == 'f') {
+                completedThisRound++;
+                }
+            }
+        }
+    }
+
+    return completedThisRound
+}
+
+
 function gridClickHandle(event) {
     let clickedCell = event.target
+    console.log(clickedCell);
     let indexI = parseInt(clickedCell.getAttribute('data-i'))
     let indexJ = parseInt(clickedCell.getAttribute('data-j'))
     
     let typeLetter = currentElement.type.charAt(0);
-    if (typeLetter == 'f') {
-        typeLetter = currentElement.type.charAt(1)
-    }
 
     let freeTo = checkBlanks(indexI, indexJ)
 
@@ -400,7 +419,7 @@ function gridClickHandle(event) {
         }
         timeCount -= currentElement.time
         
-        document.querySelector("#total-points").innerHTML = parseInt(document.querySelector("#total-points").innerHTML) + checkCompleteColRows() * 6
+        document.querySelector("#total-points").innerHTML = parseInt(document.querySelector("#total-points").innerHTML) + checkCompleteColRows() * 6 + checkEdgeForest()
 
         if (timeCount <= 7*whichSeason && !springEnd) {
             springEnd = true;
@@ -484,7 +503,7 @@ function startGame() {
 let completedRows = []
 let completeCols = []
 
-delegate(ourTable, "click", "td", gridClickHandle)
+delegate(ourTable, "click", "img", gridClickHandle)
 rotateBtn.addEventListener("click", handleRotateClick)
 flipBtn.addEventListener("click", handleFlipClick)
 

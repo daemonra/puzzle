@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Potato Map</title>
 </head>
@@ -21,20 +24,20 @@
 
         <div id="right">
             <div class="sector">
-                <div class="season" style="background-color: #3ea742">
-                    Spring: <div><span id="spring-points">0</span> Points</div>
+                <div class="season" style="background-color: #88d18a; border: 4px solid #5eb461">
+                    &#127800; Spring: <div><span id="spring-points">0</span> Pts</div>
                 </div>
 
-                <div class="season" style="background-color: #f3da00">
-                    Summer: <div><span id="summer-points">0</span> Points</div>
+                <div class="season" style="background-color: #e1d994; border: 4px solid #b7a614">
+                    &#127774; Summer: <div><span id="summer-points">0</span> Pts</div>
                 </div>
 
-                <div class="season" style="background-color: #ad7b4b">
-                    Autumn: <div><span id="autumn-points">0</span> Points</div>
+                <div class="season" style="background-color: #d19d6c;  border: 4px solid #b77b43">
+                    &#127810; Autumn: <div><span id="autumn-points">0</span> Pts</div>
                 </div>
 
-                <div class="season" style="background-color: #339db4">
-                    Winter: <div><span id="winter-points">0</span> Points</div>
+                <div class="season" style="background-color: #53bed6;  border: 4px solid #2694ac">
+                    &#9924; Winter: <div><span id="winter-points">0</span> Pts</div>
                 </div>
 
                 <h3>Total Points: <span id="total-points">0</span> </h3>
@@ -43,13 +46,14 @@
             <div class="sector">
                 <h2>Current Season: <span id="current-season">Spring</span> (BC)</h2>
 
-                <div class="mission">
-                    <div style="max-width: 90px;">
-                        <img src="2.PNG" alt="">
+                <div class="mission-container">
+                    <div>
+                        <img src="missions_eng/Group 69.png" alt="">
+                        <img src="missions_eng/Group 70.png" alt="">
                     </div>
-                    <div style="margin-left: 10px;">
-                        <h3>Borderlands</h3>
-                        <div>For each full row or column, you get six points.</div>
+                    <div>
+                        <img src="missions_eng/Group 74.png" alt="">
+                        <img src="missions_eng/Group 78.png" alt="">
                     </div>
                 </div>
             </div>
@@ -57,20 +61,24 @@
             <div class="sector">
                 <h2>Elapsed time in current season: <span id="time-elapsed">0</span>/7 </h2>
 
-                <h4>Current Element:</h4>
-
-                <div id="seconds-timer-div">
-                    <span id="seconds-timer"></span> s
+                <div class="flex-container">
+                    <div class="first">
+                        <h4>Current element:</h4>
+                        <div id="seconds-timer-div">
+                            &#128337; <span id="seconds-timer"></span> s
+                        </div>
+                        <button id="rotate-btn">Rotate</button>
+                        <button id="flip-btn">Flip</button>
+                    </div>
+                    <div>
+                        <table id="elementPre"></table>
+                    </div>
                 </div>
-                <table id="elementPre"></table>
-
-                <button id="rotate-btn">Rotate</button>
-                <button id="flip-btn">Flip</button>
+                
             </div>
 
         </div>
     </div> 
-    
     <div id="myModal" class="modal">
 
         <!-- Modal content -->

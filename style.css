@@ -3,7 +3,13 @@
 } */
 
 body {
-    background-color: #dbd4c0;
+    background-image: url(./theme1.png);
+    background-size: cover;
+    /* background-blend-mode: soft-light; */
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+
 }
 
 table{
@@ -19,30 +25,11 @@ td {
     margin: 1px;
     display: inline-block;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-td.blank {
-    background-color: #efe2b3;
-}
-
-td.mountain {
-    background-color: #ae7744;
-}
-
-td.forest {
-    background-color: #3b8e3e;
-}
-
-td.water {
-    background-color: #59d2ec;
-}
-
-td.town {
-    background-color: #b13030;
-}
-
-td.farm {
-    background-color: #ffeb35;
+td > img {
+    height: 100%;
 }
 
 .container {
@@ -52,12 +39,20 @@ td.farm {
     justify-content: center;
 }
 
+.container #left {
+    min-width: 50%;
+}
+
+.container #left > h2 {
+    margin: 0;
+}
+
 .container #right {
     margin-left: 100px;
 }
 
 div.season {
-    width: 60px;
+    /* width: 60px; */
     padding: 22px 10px;
     text-align: center;
     /* background-color: #3b8e3e; */
@@ -78,7 +73,6 @@ div.season {
     padding: 10px;
     text-align: center;
     margin-bottom: 10px;
-    max-width: 30px;
     border-radius: 5px;
 }
 
@@ -88,32 +82,36 @@ button {
     border-radius: 5px;
     padding: 10px 30px;
     border: none;
-    margin: 10px 5px 10px 0;
+    font-family: "Merriweather", serif;
+    cursor: pointer;
 }
 
-div.mission {
-    background-color: #363636;
-    color: #fff;
-    margin-right: 10px;
-    border-radius: 5px;
-    padding: 15px 0;
-    min-height: 85px;
+.flex-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-div.mission > div > img {
-    width: 90px;
+.flex-container > .first > h4{
+    margin: 0;
 }
 
-div.mission > div > h3 {
-    margin-top: 0px;
+.flex-container > .first {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
-div.mission > div {
-    font-size: 14px;
-    width: 170px;
+.flex-container > div {
+    margin-right: 10px;
+}
+
+.mission-container > div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.mission-container > div > img {
+    width: 49%;
 }
 
 .modal {
